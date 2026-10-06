@@ -1,0 +1,155 @@
+{
+  "footer": "Sample deck · fictional data",
+  "slides": [
+    {
+      "layout": "table-kpi",
+      "title": "Project Atlas: Status",
+      "pill": {"text": "On track", "tone": "good"},
+      "columns": ["Workstream", "Status", "This period", "Next two weeks"],
+      "widths": [0.17, 0.11, 0.36, 0.36],
+      "rows": [
+        ["Data pipeline", "On track", "Nightly load moved to the new scheduler", "Add retry alerts"],
+        ["Search API", "Pending", "Waiting on access to the staging cluster", "Load test once access lands"],
+        ["Mobile app", "Ongoing", "Beta build shared with 20 testers", "Fix top 5 beta issues"]
+      ],
+      "kpis": [
+        {"value": "3", "label": "workstreams"},
+        {"value": "20", "label": "beta testers"},
+        {"value": "1", "label": "open dependency"},
+        {"value": "[__]", "label": "launch date"}
+      ],
+      "notes": "Speaker notes go here."
+    },
+    {
+      "layout": "scorecard",
+      "title": "Quality Check: Latest Run",
+      "hero": {"label": "Overall pass rate", "value": "88%", "sub_label": "Target: 80%", "tone": "good"},
+      "chips": [
+        {"value": "44", "label": "Passed", "tone": "good"},
+        {"value": "5", "label": "Review", "tone": "attention"},
+        {"value": "1", "label": "Skipped", "tone": "neutral"}
+      ],
+      "detail": "Run date [__] · 50 of 50 items processed",
+      "caption": "Results dashboard screenshot",
+      "panels": [
+        {"heading": "How items are scored", "text": "Exact match on fields, plus a rubric check on the written reply."},
+        {"heading": "What comes next", "text": "Add new cases from recent misses and re-run.", "tone": "green"}
+      ]
+    },
+    {
+      "layout": "data-table-insights",
+      "title": "Run Metrics",
+      "columns": ["Per item", "Average", "Median", "Max"],
+      "rows": [
+        {"cells": ["Total tokens", "4,200", "3,900", "9,800"], "key": true},
+        {"cells": ["Prompt", "3,600", "3,400", "8,100"], "indent": true},
+        {"cells": ["Completion", "600", "500", "1,700"], "indent": true},
+        {"cells": ["Duration", "1m 12s", "1m 05s", "3m 40s"], "key": true}
+      ],
+      "summary": "50 items · totals [__]",
+      "cards": [
+        {"heading": "Baseline", "text": "First measured average for this flow."},
+        {"heading": "86% of tokens are prompt", "text": "3,600 ÷ 4,200. Trimming context is the biggest lever.", "tone": "teal"},
+        {"heading": "Watch the long tail", "text": "Max duration is about 3× the median.", "tone": "attention"}
+      ]
+    },
+    {
+      "layout": "step-flow",
+      "title": "Proposal: Weekly Review Loop",
+      "pill": {"text": "Proposed", "tone": "proposed"},
+      "intro": "A simple loop so changes are tested before they ship.",
+      "steps": [
+        {"label": "1 · DRAFT", "text": "Owner drafts the change"},
+        {"label": "2 · TEST", "text": "Run the check suite"},
+        {"label": "3 · REVIEW", "text": "Team reviews the results"},
+        {"label": "4 · SHIP", "text": "Release with a version tag"}
+      ],
+      "panels": [
+        {"heading": "Owners control", "text": "Wording, examples and thresholds."},
+        {"heading": "Stays locked", "text": "Data access and output format."}
+      ],
+      "closing": "Every change is versioned, tested and reversible."
+    },
+    {
+      "layout": "numbered-cards",
+      "title": "Why the Launch Moved",
+      "pill": {"text": "New date [__]", "tone": "good"},
+      "headline": "**About 6 weeks** later than planned. The time built up across three kinds of work.",
+      "cards": [
+        {"heading": "Scope changes", "text": "Two features were added after design sign-off."},
+        {"heading": "Review cycles", "text": "Each round of feedback added a week between submissions."},
+        {"heading": "Dependencies", "text": "Access and environments needed other teams."}
+      ],
+      "note": {"lead_in": "Also in parallel:", "text": "a vendor upgrade that finished last week."},
+      "source_note": "Source: project tracker"
+    },
+    {
+      "layout": "milestone-timeline",
+      "title": "Timeline",
+      "start": "2026-01-05",
+      "end": "2026-04-06",
+      "phases": [
+        {"label": "Phase 1", "start": "2026-01-05", "end": "2026-02-02"},
+        {"label": "Phase 2", "start": "2026-02-16", "end": "2026-03-23"}
+      ],
+      "milestones": [
+        {"date": "2026-01-05", "label": "Jan 5", "event": "Kick-off"},
+        {"date": "2026-01-19", "label": "Jan 19", "event": "Design review"},
+        {"date": "2026-02-02", "label": "Feb 2", "event": "Phase 1 approved", "kind": "approval"},
+        {"date": "2026-02-16", "label": "Feb 16", "event": "Phase 2 starts"},
+        {"date": "2026-03-09", "label": "Mar 9", "event": "Fix cycle"},
+        {"date": "2026-03-23", "label": "~Mar 23", "event": "Final sign-off", "kind": "target"},
+        {"date": "2026-04-06", "label": "Apr 6", "event": "Launch", "kind": "golive"}
+      ],
+      "today": {"date": "2026-03-16", "label": "Today"},
+      "pattern": "Pattern: draft → review → feedback → fix → resubmit",
+      "caveat": "Approximately to scale."
+    },
+    {
+      "layout": "lane-timeline",
+      "title": "Workstreams vs. Plan",
+      "start": "2026-01-05",
+      "end": "2026-04-13",
+      "periods": [
+        {"label": "Jan", "date": "2026-01-05"},
+        {"label": "Feb", "date": "2026-02-02"},
+        {"label": "Mar", "date": "2026-03-02"},
+        {"label": "Apr", "date": "2026-04-06"}
+      ],
+      "lanes": [
+        {"label": "Build", "bars": [{"start": "2026-01-05", "end": "2026-02-20", "label": "Build & test"}]},
+        {"label": "Vendor", "bars": [{"start": "2026-01-19", "end": "2026-03-02", "label": "Upgrade (wait)", "style": "wait", "tone": "teal"}]},
+        {"label": "Review", "bars": [
+          {"start": "2026-02-02", "end": "2026-03-16", "label": "Review rounds", "tone": "blue"},
+          {"start": "2026-03-16", "end": "2026-03-27", "label": "Sign-off", "style": "planned", "tone": "blue"}
+        ]},
+        {"label": "Launch", "markers": [
+          {"date": "2026-02-23", "label": "Planned", "kind": "planned"},
+          {"date": "2026-04-06", "label": "Current", "kind": "current", "note": "Slip ~6 weeks"}
+        ]}
+      ],
+      "today": {"date": "2026-03-16", "label": "Today"},
+      "legend": {"done": "Done", "wait": "Waiting on others", "planned": "Planned"}
+    },
+    {
+      "layout": "status-learnings",
+      "title": "Where We Are & What Changes",
+      "left_heading": "Status today",
+      "columns": ["Item", "Status"],
+      "rows": [
+        ["Code review", "Approved"],
+        ["Final sign-off", {"text": "Target ~Mar 23", "tone": "proposed"}],
+        ["Vendor upgrade", "Done"],
+        ["Launch comms", "Pending"]
+      ],
+      "path": {"lead_in": "Path:", "text": "sign-off → final test → launch Apr 6."},
+      "right_heading": "Learnings",
+      "learnings": [
+        {"title": "Lock scope earlier", "text": "Agree features before design sign-off"},
+        {"title": "Start reviews in week one", "text": "Run them in parallel with the build"},
+        {"title": "Name dependencies up front", "text": "List access and environment needs on day one"}
+      ],
+      "closing": "Goal: fewer late surprises, not blame for the past."
+    }
+  ]
+}

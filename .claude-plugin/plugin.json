@@ -1,0 +1,7 @@
+{
+  "name": "slide-skills",
+  "description": "Skills for building clean, editable slides in one consistent style.",
+  "version": "0.2.0",
+  "author": { "name": "ravi-labs" },
+  "repository": "https://github.com/ravi-labs/slide-skills"
+}
