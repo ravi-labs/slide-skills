@@ -38,30 +38,49 @@ Older names still work: `status-table` → `table-kpi`, `metrics-table` → `dat
 5. Leave out any optional element the request doesn't mention.
 6. Keep to one idea per slide. If the content doesn't fit, split it into two slides. Don't shrink text below the type scale.
 
-## Style (all layouts)
+## Theme
 
-**Colors**
+Colors are set by a **theme**. Layouts refer only to the role tokens below, never to fixed colors, so any theme works with every layout.
 
-| Token | Hex | Role |
+**Default theme**
+
+| Token | Default | Role |
 |---|---|---|
-| `navy` | #1F3A6E | Header, primary |
-| `blue` | #3B5FC4 | Accent, neutral or proposed |
-| `teal` | #2A8A9A | Accent |
-| `green` | #2E7D4F | Good, on track, done |
-| `orange` | #C0582E | Attention, pending, at risk |
+| `primary` | #1F3A6E | Header bar, headings, neutral accent |
+| `on-primary` | #FFFFFF | Text on `primary`, `accent`, `good` and `attention` fills |
+| `accent` | #3B5FC4 | Accent line, highlights, "proposed" |
+| `accent-2` | #2A8A9A | Second accent |
+| `good` | #2E7D4F | Good, on track, done |
+| `attention` | #C0582E | Attention, pending, at risk |
 | `page` | #F6F7F9 | Slide background |
 | `card` | #FFFFFF | Card fill |
-| `border` | #D9DEE6 | Card border |
+| `border` | #D9DEE6 | Card border, gridlines |
 | `row-alt` | #F0F3F7 | Alternate table row |
 | `text` | #1C2433 | Body text |
 | `muted` | #4D5666 | Secondary text |
-| `footer` | #6A7282 | Footer, captions |
-| `panel-blue` | #E8EEFB | Light panel |
-| `panel-green` | #E5F3F0 | Light panel |
+| `footer` | #6A7282 | Footer, captions, axis lines |
+| `panel` | #E8EEFB | Light panel |
+| `panel-good` | #E5F3F0 | Light panel for positive content |
 
-Semantic colors: `green` means good, `orange` means attention, and `navy` or `blue` are neutral. The accent cycle is `navy`, `teal`, `blue`, `green`.
+Semantic colors: `good` means positive, `attention` means a warning, and `primary` or `accent` are neutral. The accent cycle is `primary`, `accent-2`, `accent`, `good`.
 
-**Font:** Open Sans (fallback Arial).
+**Using your own theme**
+
+The user can supply a theme in the request or as an attached file, in any readable form, for example:
+
+```
+theme:
+  primary: "#0B3D2E"
+  accent: "#E07A1F"
+  font: "Inter"
+```
+
+- Override only the tokens the user gives. Keep the default for every other token.
+- Keep the meaning of each role: `good` must still read as positive and `attention` as a warning.
+- Make sure text stays readable. If a supplied color gives poor contrast (for example light text on a light fill), say so in your reply and suggest a fix rather than silently changing it.
+- If the user names a brand or uploads a logo or template, take colors from it only when the user asks you to.
+
+**Font:** Open Sans by default (fallback Arial). A theme can set `font`.
 
 **Type scale**
 
@@ -77,16 +96,16 @@ Semantic colors: `green` means good, `orange` means attention, and `navy` or `bl
 
 **Frame (every slide)**
 
-- **Header bar:** `navy`, full width, top 0, height 1.17 in. Put `{title}` in white, left 0.67 in, vertically centred.
-- **Accent line:** `blue`, full width, directly under the header, height 0.06 in.
-- **Status pill (optional):** a rounded rectangle at the top right of the header with white bold `{status}` text.
-  - `green`: on track or done.
-  - `orange`: pending or at risk.
-  - `blue`: proposed.
+- **Header bar:** `primary`, full width, top 0, height 1.17 in. Put `{title}` in `on-primary`, left 0.67 in, vertically centred.
+- **Accent line:** `accent`, full width, directly under the header, height 0.06 in.
+- **Status pill (optional):** a rounded rectangle at the top right of the header with `on-primary` bold `{status}` text.
+  - `good`: on track or done.
+  - `attention`: pending or at risk.
+  - `accent`: proposed.
 - **Content area:** left and right margins 0.67 in, top 1.5 in, bottom 6.4 in.
 - **Footer:** `{footer text}` at bottom left and `{page number}` at bottom right, both 12 pt `footer`, 0.44 in from the bottom. Omit the footer text if none is given, but always show the page number.
 - **Card:** `card` fill, 1 pt `border`, small corner radius, a 4–5 pt accent border on one side, inner padding about 0.2 in.
-- **Panel:** `panel-blue` or `panel-green` fill, no border, the same padding.
+- **Panel:** `panel` or `panel-good` fill, no border, the same padding.
 - **Speaker notes:** if the request gives notes, put them in each slide's notes.
 
 ---
@@ -97,7 +116,7 @@ A table across the top and a row of KPI tiles below it. Use it for workstream st
 
 - **Optional `{status pill}`:** the overall status.
 - **Table, full content width:** `{columns}` × `{rows}`.
-  - Each header cell has its own fill from the accent cycle, with white bold text.
+  - Each header cell has its own fill from the accent cycle, with `on-primary` bold text.
   - Rows alternate `card` and `row-alt`.
   - Keep label and status columns narrow (about 10–17%) and split the remaining width between the text columns.
   - Any status column is bold with semantic colors.
@@ -121,28 +140,28 @@ A headline result on the left and a results image on the right, with optional pa
 
 A data table on the left and insight cards on the right. Use it for aggregate metrics such as cost, tokens or latency.
 
-- **Left (about 60% width):** a table with a `navy` header row and white bold text: `{columns}` × `{rows}`.
+- **Left (about 60% width):** a table with a `primary` header row and `on-primary` bold text: `{columns}` × `{rows}`.
   - Rows alternate. Right-align the numbers.
   - Indent sub-rows where the request says so.
   - Show durations as minutes and seconds (for example "3m 13s").
-  - Highlight the key values in bold `blue`.
+  - Highlight the key values in bold `accent`.
   - Optional `{summary line}` under the table, in body, `muted`, for example totals and counts.
 - **Right (about 40% width):** 2–4 stacked cards.
-  - Each card has a thick left border from the accent cycle, or a semantic color (`orange` for a watch item).
-  - Each holds a `{heading}` (bold, `navy`) and `{text}` of one or two sentences.
+  - Each card has a thick left border from the accent cycle, or a semantic color (`attention` for a watch item).
+  - Each holds a `{heading}` (bold, `primary`) and `{text}` of one or two sentences.
   - Common card patterns are a baseline comparison, the biggest driver, and the long tail (max compared with median). Use them only when the request asks for them.
 
 ## Layout: `step-flow`
 
 An intro, a sequence of steps, and supporting panels. Use it for proposals and operating models.
 
-- Optional `{status pill}`. Use `blue` for a proposal.
+- Optional `{status pill}`. Use `accent` for a proposal.
 - Optional `{intro}`: one sentence at 16 pt, full width.
-- **Step row:** 3–5 cards with small grey right-arrow shapes between them.
+- **Step row:** 3–5 cards with small right-arrow shapes in `footer` color between them.
   - Each card has a thick top border from the accent cycle.
   - Each holds a `{step label}` (bold, in the border color, for example "1 · {STEP}") and `{step text}`.
 - **Optional panel row:** 1–3 panels, each with a `{heading}` and `{text}`, for example who owns what and what stays locked.
-- Optional `{closing line}`: bold, `navy`, 13 pt.
+- Optional `{closing line}`: bold, `primary`, 13 pt.
 
 ## Layout: `numbered-cards`
 
@@ -151,52 +170,52 @@ A one-line message, a row of numbered cards, and an optional note band. Use it f
 - Optional `{status pill}`.
 - `{headline}`: one or two sentences at 17 pt, full width. Bold the key phrase only.
 - **Card row:** 3–4 equal cards.
-  - Each card has a thick `navy` top border.
-  - Each holds a small `{number}` (bold, `blue`), a `{heading}` (15 pt bold, `navy`) and `{text}` (one or two sentences).
-- Optional **note band:** a full-width `panel-blue` with a bold `{lead-in}` followed by `{text}`.
+  - Each card has a thick `primary` top border.
+  - Each holds a small `{number}` (bold, `accent`), a `{heading}` (15 pt bold, `primary`) and `{text}` (one or two sentences).
+- Optional **note band:** a full-width `panel` with a bold `{lead-in}` followed by `{text}`.
 - Optional `{source note}` appended to the footer text.
 
 ## Layout: `milestone-timeline`
 
 A single horizontal timeline with dated milestones and labels that alternate above and below the line.
 
-- **Phase bands (optional):** 1–3 `panel-blue` bars along the top, each with a bold `navy` `{phase label}`. Each spans the dates of its phase.
-- **Axis:** a thin grey line across the full content width, about 60% of the way down the timeline area.
+- **Phase bands (optional):** 1–3 `panel` bars along the top, each with a bold `primary` `{phase label}`. Each spans the dates of its phase.
+- **Axis:** a thin line in `footer` color across the full content width, about 60% of the way down the timeline area.
 - **Milestones:** 5–10 markers placed proportionally by date.
-  - Small circles: `navy` for normal events, `green` for an approval or completion, `blue` for a target date.
-  - Use a `green` diamond for the final go-live.
+  - Small circles: `primary` for normal events, `good` for an approval or completion, `accent` for a target date.
+  - Use a `good` diamond for the final go-live.
   - Each label is `{date}` in bold over `{event}`, in body text. Alternate labels above and below the line so they never overlap.
-  - Color the label text to match its marker when the marker is `green` or `blue`.
-- Optional **today marker:** a dashed `orange` vertical line with "`{today label}`" in bold `orange`.
-- Optional **pattern bar:** a card with a thick `navy` left border and one bold `navy` `{pattern line}`.
-- Optional `{caveat}`: one line of body text in `footer` grey.
+  - Color the label text to match its marker when the marker is `good` or `accent`.
+- Optional **today marker:** a dashed `attention` vertical line with "`{today label}`" in bold `attention`.
+- Optional **pattern bar:** a card with a thick `primary` left border and one bold `primary` `{pattern line}`.
+- Optional `{caveat}`: one line of body text in `footer` color.
 
 ## Layout: `lane-timeline`
 
 A Gantt-style chart: one row per workstream with bars across shared date columns.
 
 - **Date header:** `{period labels}` (weeks or months) across the top in `muted`, with thin vertical gridlines.
-- **Lanes:** 3–5 rows. Each has a `{lane label}` in bold `navy` on the left (about 15% of the width).
+- **Lanes:** 3–5 rows. Each has a `{lane label}` in bold `primary` on the left (about 15% of the width).
 - **Bars:**
   - Solid fill from the accent cycle for completed work.
   - Hatched or lighter fill for a dependency or wait.
   - A dashed outline for planned or future work.
   - Put the bar's `{label}` inside the bar, or just after it if the bar is short.
-- **Markers:** diamonds for go-live dates. Show the planned date as an outlined `muted` diamond and the current date as a solid `green` one, with an optional `{slip label}` between them in `orange`.
-- Optional dashed `orange` today line and a 2–3 item legend under the chart.
+- **Markers:** diamonds for go-live dates. Show the planned date as an outlined `muted` diamond and the current date as a solid `good` one, with an optional `{slip label}` between them in `attention`.
+- Optional dashed `attention` today line and a 2–3 item legend under the chart.
 
 ## Layout: `status-learnings`
 
 A status table and next-step path on the left, with numbered learnings on the right.
 
 - **Left (about 40% width):**
-  - A `{heading}` (15 pt bold, `navy`).
-  - A two-column table with a `navy` header row and white bold text. Rows alternate. Color the status cells semantically.
-  - An optional `panel-green` with a thick `green` left border holding a bold `{lead-in}` and a `{path}` line.
+  - A `{heading}` (15 pt bold, `primary`).
+  - A two-column table with a `primary` header row and `on-primary` bold text. Rows alternate. Color the status cells semantically.
+  - An optional `panel-good` with a thick `good` left border holding a bold `{lead-in}` and a `{path}` line.
 - **Right (about 60% width):**
   - A `{heading}`.
-  - 3–5 stacked white cards. Each holds `{n} · {title}` (bold, `blue`) above one line of `{text}`.
-- Optional `{closing line}`: bold, `navy`, full width.
+  - 3–5 stacked `card` cards. Each holds `{n} · {title}` (bold, `accent`) above one line of `{text}`.
+- Optional `{closing line}`: bold, `primary`, full width.
 
 ---
 
