@@ -80,6 +80,8 @@ theme:
 - Make sure text stays readable. If a supplied color gives poor contrast (for example light text on a light fill), say so in your reply and suggest a fix rather than silently changing it.
 - If the user names a brand or uploads a logo or template, take colors from it only when the user asks you to.
 
+## Style (all layouts)
+
 **Font:** Open Sans by default (fallback Arial). A theme can set `font`.
 
 **Type scale**
