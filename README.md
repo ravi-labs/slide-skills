@@ -4,7 +4,7 @@ Reusable slide skills in the open `SKILL.md` format. Attach or install one in Cl
 
 | Skill | Layouts |
 |---|---|
-| [`slides`](skills/slides/SKILL.md) | `table-kpi`, `scorecard`, `data-table-insights`, `step-flow`, `numbered-cards`, `milestone-timeline`, `lane-timeline`, `status-learnings` |
+| [`slides`](skills/slides/SKILL.md) | `table-kpi`, `scorecard`, `data-table-insights`, `step-flow`, `numbered-cards`, `milestone-timeline`, `lane-timeline`, `status-learnings`, `kpi-panels`, `flow-table` |
 
 ## Usage
 

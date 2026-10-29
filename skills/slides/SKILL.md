@@ -1,6 +1,6 @@
 ---
 name: slides
-description: Build clean, editable 16:9 slides in one consistent style from named layouts (table-kpi, scorecard, data-table-insights, step-flow, numbered-cards, milestone-timeline, lane-timeline, status-learnings). Use when the user wants a table, scorecard, metrics view, step sequence, timeline or summary in this style, especially when a screenshot or table is attached. The request supplies all titles, labels, text and data.
+description: Build clean, editable 16:9 slides in one consistent style from named layouts (table-kpi, scorecard, data-table-insights, step-flow, numbered-cards, milestone-timeline, lane-timeline, status-learnings, kpi-panels, flow-table). Use when the user wants a table, scorecard, metrics view, step sequence, timeline or summary in this style, especially when a screenshot or table is attached. The request supplies all titles, labels, text and data.
 ---
 
 # Slides
@@ -25,6 +25,8 @@ The request names a layout, for example:
 | `milestone-timeline` | Dated milestones on one line, with phases and a today marker |
 | `lane-timeline` | Rows as bars against a shared date scale |
 | `status-learnings` | Status table and next steps, plus numbered takeaways |
+| `kpi-panels` | KPI tiles on top, an icon list and a stack of step cards below |
+| `flow-table` | Icon step flow on top, a full-width status table below |
 
 Older names still work: `status-table` → `table-kpi`, `metrics-table` → `data-table-insights`, `proposal-flow` → `step-flow`.
 
@@ -217,6 +219,42 @@ A status table and next-step path on the left, with numbered takeaways on the ri
   - A `{heading}`.
   - 3–5 stacked `card` cards. Each holds `{n} · {title}` (bold, `accent`) above one line of `{text}`.
 - Optional `{closing line}`: bold, `primary`, full width.
+
+## Layout: `kpi-panels`
+
+A row of KPI tiles on top, with two panels below: an icon list on the left and a stack of step cards on the right.
+
+- **Optional `{status pill}`.**
+- **Optional `{intro}`:** one line at 16 pt, `muted`, full width, above the tiles.
+- **KPI row, full content width:** 2–4 equal tiles.
+  - Each tile is a `panel` with no border.
+  - Each holds a `{value}` (KPI number, `accent-2`) above a `{label}` (body, `text`).
+  - A `{value}` may be text, such as a short status; keep it to one line.
+- **Left panel (about 50% width):**
+  - A `{heading}` (15 pt bold, `primary`).
+  - 3–5 rows. Each row has a small icon in a circle (`panel` fill, `primary` icon), then a bold `{item}` (`primary`) followed on the same line by `{text}` (body).
+  - Pick a simple line icon that matches each item; never use emoji.
+- **Right panel (about 50% width):**
+  - A `{heading}` (15 pt bold, `primary`).
+  - 2–4 stacked full-width cards, top to bottom in sequence. Each card is a `panel` holding a bold `{step}` (`accent-2`) followed on the same line by `{text}` (body).
+  - The request may mark one card as current; give that card a `panel-good` fill.
+  - Optional `{note}` under the cards: one line, italic, `accent-2`.
+
+## Layout: `flow-table`
+
+A step flow across the top and a full-width table below.
+
+- **Optional `{status pill}`.**
+- **Step row, full content width:** 3–6 steps, evenly spaced.
+  - Each step is an icon in a circle (`panel` fill, `primary` icon), with a bold `{step}` (`primary`) and one short line of `{text}` (body, `muted`) centred under it.
+  - The request may mark the last step as the outcome; give its circle a `accent-2` fill with an `on-primary` icon.
+  - Thin arrows in `footer` color between the circles.
+  - Pick a simple line icon that matches each step; never use emoji.
+- **Table, full content width, below the steps:** `{columns}` × `{rows}`.
+  - `primary` header row with `on-primary` bold text. Rows alternate `card` and `row-alt`.
+  - Keep the first column bold. Give the widest share to the text column.
+  - A status column is centred, bold, with a light semantic fill: `panel-good` with `good` text for done or working, a light `attention` tint with `attention` text for in progress or under review.
+  - Keep cells to one line where possible, never more than two.
 
 ---
 
