@@ -63,6 +63,7 @@ Colors are set by a **theme**. Layouts refer only to the role tokens below, neve
 | `footer` | #6A7282 | Footer, captions, axis lines |
 | `panel` | #E8EEFB | Light panel |
 | `panel-good` | #E5F3F0 | Light panel for positive content |
+| `panel-attention` | #FBEDE7 | Light panel for warning content |
 
 Semantic colors: `good` means positive, `attention` means a warning, and `primary` or `accent` are neutral. The accent cycle is `primary`, `accent-2`, `accent`, `good`.
 
@@ -253,8 +254,10 @@ A step flow across the top and a full-width table below.
 - **Table, full content width, below the steps:** `{columns}` × `{rows}`.
   - `primary` header row with `on-primary` bold text. Rows alternate `card` and `row-alt`.
   - Keep the first column bold. Give the widest share to the text column.
-  - A status column is centred, bold, with a light semantic fill: `panel-good` with `good` text for done or working, a light `attention` tint with `attention` text for in progress or under review.
+  - Every header cell has the same height and the same top and bottom padding; the header row is one straight band.
+  - A status column is centred and bold, and every status cell is filled: `panel-good` with `good` text for done or working, `panel-attention` with `attention` text for in progress, pending or under review. Never leave a status cell plain.
   - Keep cells to one line where possible, never more than two.
+  - Use the request's wording in every cell exactly; do not shorten or reword it.
 
 ---
 
