@@ -2,3 +2,8 @@
 __pycache__/
 *.pptx
 .DS_Store
+Claude outputs/
+*.pptx
+*.pdf
+*.docx
+
